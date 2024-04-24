@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
-import { Avatar } from '@material-tailwind/react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import React, { useState } from "react";
+import { Avatar } from "@material-tailwind/react";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 interface ClassesProps {
   classCurrent: string;
@@ -13,29 +18,64 @@ const SideBarClasses: React.FC<ClassesProps> = ({ classCurrent }) => {
     setIsOpen(!isOpen);
   };
 
-  const items = ['Joãozinho e Mariazinha', 'Pedrinho e Aninha', 'Jurema e Cleitin'];
+  const hi = () => {
+    console.log("oiiiii");
+  };
+
+  const items = [
+    "TEF7 - João e Maria",
+    "PS - Pedro e Ana",
+    "GS/TET3 - Julia e Caio",
+  ];
 
   return (
-    <nav className='fixed font-inter h-full border-r-[1px] border-[#d3d3d3] w-56 px-1 py-2 flex flex-col justify-between'>
-      <div className='flex flex-col gap-3 justify-start items-start'>
-        <Avatar placeholder={""} src="https://docs.material-tailwind.com/img/face-2.jpg" alt="avatar" variant="rounded" className='h-[6em] w-[6em]'/>
-        <h1 className='font-inter font-semibold mt-6'>{classCurrent}</h1>
-        <hr className='w-full border-t-[1px] border-[#d3d3d3]' />
+    <nav className="fixed h-full border-r-[1px] border-[#d3d3d3] w-56 px-1 py-2 flex flex-col justify-between">
+      <div className="flex flex-col gap-3 justify-start items-start">
+        <Link
+          href={"/apprentice/diario"}
+          className={"flex items-center justify-center"}
+        >
+          <ChevronLeftIcon className="h-4 w-4 " />
+          <h1 className="text-xs 
+           font-medium">Todas as equipes </h1>
+        </Link>
+        <Avatar
+          placeholder={""}
+          variant="rounded"
+          className="h-[6em] w-[6em] mt-6 bg-palette-sea-green"
+        />
+        <h1 className="font-semibold mt-6">{classCurrent}</h1>
+        <hr className="w-full border-t-[1px] border-[#d3d3d3]" />
 
-        <button className="text-left text-sm flex text-pallete-gray w-full font-semibold" onClick={toggleAccordion}>
-          <ChevronDownIcon className='mt-[2px] h-4 w-4 mr-4'/>
-          Duplas por área   
+        <button
+          className="text-left text-sm flex text-pallete-font w-full font-medium hover:text-[#000000]"
+          onClick={toggleAccordion}
+        >
+          <ChevronDownIcon className="mt-[3px] h-4 w-4 mr-4" />
+          Duplas por área
         </button>
 
         {isOpen && (
           <div className="ml-4 mt-2">
             <ul>
               {items.map((item, index) => (
-                <li className={"font-medium text-palette-gray text-sm mb-1"} key={index}>{item}</li>
+                <li
+                  onClick={hi}
+                  className={
+                    "font-medium p-2 cursor-pointer rounded hover:bg-[#efefef] w-full text-palette-gray text-sm mb-[1px]"
+                  }
+                  key={index}
+                >
+                  {item}
+                </li>
               ))}
             </ul>
           </div>
         )}
+      </div>
+      <div className="pb-5 flex flex-row">
+        <PlusIcon color={"#3E3E3E"} className="h-4 w-4 mr-3" />
+        <h1 className="text-sm text-palette-font mb-[1px] font-medium">Nova equipe</h1>
       </div>
     </nav>
   );
