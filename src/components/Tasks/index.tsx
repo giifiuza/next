@@ -26,12 +26,12 @@ export default function TasksCard() {
                             <FiTable color={`${tableVisualization ? '#fff' : '#7B7B7B'}`} size={18} />
                             <p className={`font-medium ${tableVisualization ? "text-white" : "text-[#7B7B7B]"} `}>Table</p>
                         </button>
-                        <button onClick={() => { !tableVisualization ? '' : handleVisualization() }} className={`flex w-auto h-auto justify-center items-center gap-2  p-4 py-0.5 rounded-lg ${!tableVisualization ? "bg-palette-blue border-palette-blue" : inactiveStyle} border-solid border-[2px]`}>
+                        <button onClick={() => { !tableVisualization ? '' : handleVisualization() }} className={`flex w-auto h-auto justify-center items-center gap-2  p-4 py-0.5 rounded-lg ${!tableVisualization ? "bg-palette-sea-green border-palette-sea-green" : inactiveStyle} border-solid border-[2px]`}>
                             <PiKanban color={`${!tableVisualization ? '#fff' : '#7B7B7B'}`} size={20} />
                             <p className={`font-medium ${!tableVisualization ? "text-white" : "text-[#7B7B7B]"} `}>Status</p>
                         </button>
                     </div>
-                    <ButtonIcon color="bg-palette-blue" title="Nova Task" onClick={() => setShowModal(true)} icon={<CiCirclePlus size={25} color="#FFF" />} colorHover={" hover:bg-sky-700"} />
+                    <ButtonIcon color="bg-palette-sea-green" title="Nova Task" onClick={() => setShowModal(true)} icon={<CiCirclePlus size={25} color="#FFF" />} colorHover={" hover:bg-sky-700"} />
                 </article>
             </div>
 

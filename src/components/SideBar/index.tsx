@@ -25,7 +25,6 @@ function SideBar({ Menus }: IMenu) {
 
     return (
         <nav className={`relative overflow-y-auto overflow-x-hidden duration-500 bg-palette-menu transition-all px-5 ${open ? "w-60" : "w-24"}`} >
-            {/* opened */}
             <div className={`${!open && 'pt-5'}`}>
                 <div className={`${!open ? 'flex flex-col justify-end' : 'pt-3'} `}>
                     <Image alt="close icon" src={close}

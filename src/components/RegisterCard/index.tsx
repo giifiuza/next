@@ -1,25 +1,31 @@
-import { useState } from "react"
-import CalendarIcon from "./calendarIcon"
-// import Detail from "./Detail"
+'use client'
+import React, { useState } from "react";
+import CalendarIcon from "./calendarIcon";
 
-export default function Register() {
-    const [ShowDetail, setShowDetail] = useState(false)
+interface RegisterProps {
+    title: string;
+    date: string;
+    description: string;
+}
+
+const Register: React.FC<RegisterProps> = ({ title, date, description }) => {
+    const [showDetail, setShowDetail] = useState<boolean>(false);
+    const truncatedDescription: string = description.length > 104 ? description.substring(0, 104) + '...' : description;
 
     return (
         <div>
-            <div className="border w-[17em] h-[19em] rounded-xl drop-shadow-sm space-y-1">
+            <div className="border w-[17em] h-[17.5em] rounded-xl drop-shadow-sm space-y-1">
                 <div className="p-4">
                     <div className="p-2">
-                        <h1 className="font-bold text-xl">Start Process Mapping</h1>
+                        <h1 className="font-bold text-xl">{title}</h1>
                     </div>
                     <div className="p-2 flex space-x-2 items-center">
                         <CalendarIcon />
-                        <h2 className="text-lyricsDark text-sm">04/04/2024</h2>
+                        <h2 className="text-lyricsDark text-sm">{date}</h2>
                     </div>
                     <div className="p-2 w-[14em] h-[6em]">
                         <h3 className="text-lyricsDark text-sm size-30">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Sed do eiusenim ad minim veniam, quis nostrud exercitation......
+                            {truncatedDescription}
                         </h3>
                     </div>
                 </div>
@@ -31,9 +37,9 @@ export default function Register() {
                     <button className="bg-palette-blue w-[8em] text-center h-[36px] text-white font-semibold rounded" onClick={() => setShowDetail(true)}>Ver mais</button>
                 </div>
             </div>
-            <div>
-                {/* <Detail isVisible={ShowDetail} onClose={() => setShowDetail(false)} /> */}
-            </div>
+            
         </div>
-    )
+    );
 }
+
+export default Register;
