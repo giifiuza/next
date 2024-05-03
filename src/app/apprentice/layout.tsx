@@ -22,7 +22,7 @@ export default async function ApprendiceLayout({
 }>) {
   const Menus = [
     { title: "Dashboard", src: dashboardImage, link: "/apprentice" },
-    { title: "Diário de bordo", src: notebookImage, link: "/apprentice" },
+    { title: "Diário de bordo", src: notebookImage, link: "/apprentice/diario" },
     { title: "Tarefas", src: tasksImage, link: "/apprentice/tasks" },
     { title: "Meus projetos", src: projectsImage, link: "/apprentice/project" },
     { title: "Configurações", src: settingsImage, link: "/apprentice/settings" },
