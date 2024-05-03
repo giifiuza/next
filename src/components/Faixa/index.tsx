@@ -5,17 +5,17 @@ import { Avatar, Button } from "@material-tailwind/react";
 import { CloudArrowUpIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import FormInput from "../FormInput";
 import ButtonIcon from "../ButtonIcon";
-import { BlockPicker } from "react-color";
+import { BlockPicker, ColorResult } from "react-color";
 
 export default function Faixa() {
-  const [hovered, setHovered] = useState(false);
-  const [showColorPicker, setShowColorPicker] = useState(false);
-  const [divColor, setDivColor] = useState(localStorage.getItem("divColor") || "#eeeeee");
-  const blockPickerRef = useRef(null);
+  const [hovered, setHovered] = useState<boolean>(false);
+  const [showColorPicker, setShowColorPicker] = useState<boolean>(false);
+  const [divColor, setDivColor] = useState<string>(localStorage.getItem("divColor") || "#eeeeee");
+  const blockPickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (blockPickerRef.current && !blockPickerRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (blockPickerRef.current && !blockPickerRef.current.contains(event.target as Node)) {
         setShowColorPicker(false);
       }
     }
@@ -26,8 +26,8 @@ export default function Faixa() {
     };
   }, []);
 
-  const handleColorChange = (color) => {
-    const newColor = color.hex;
+  const handleColorChange = (color: ColorResult) => {
+    const newColor: string = color.hex;
     setDivColor(newColor);
     localStorage.setItem("divColor", newColor);
   };
@@ -46,7 +46,7 @@ export default function Faixa() {
         </button>
       </div>
 
-      <Avatar src="https://flowbite.com/application-ui/demo/images/users/roberta-casas.png" alt="Avatar" className="absolute border-2 border-white top-[6em] left-2 z-20 h-[12em] w-[12em]" />
+      <Avatar placeholder={"Nothing"} src="https://flowbite.com/application-ui/demo/images/users/roberta-casas.png" alt="Avatar" className="absolute border-2 border-white top-[6em] left-2 z-20 h-[12em] w-[12em]" onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
 
       <div className="h-96 w-full z-10 px-4 py-2 relative">
         <h1 className="ml-[11em] mt-4 font-semibold text-xl text-[#000000]">Tiffany Bittencourt</h1>
@@ -63,7 +63,7 @@ export default function Faixa() {
           <FormInput labelText="Senha" />
           <FormInput labelText="Confirmação de senha" />
           <div className="flex flex-row gap-4 ">
-            <ButtonIcon color={"bg-[#007BC0]"} title={"Confirmar dados"} colorHover="bg-[#]" />
+            <ButtonIcon icon={undefined} onClick={()=> console.log("oi")} color={"bg-[#007BC0]"} title={"Confirmar dados"} colorHover="bg-[#]" />
             <button className="flex flex-row w-auto h-auto font-medium my-2">
               <div className={`bg-[#f4f4f4] flex items-center justify-center p-2 px-3 gap-1 content-center rounded`}>
                 <h1 className='text-center text-[#007BC0] font-inter '>
