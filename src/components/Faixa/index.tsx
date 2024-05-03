@@ -35,7 +35,7 @@ export default function Faixa() {
   return (
     <div className="relative">
       <div
-        className="h-48 w-full bg-[#eeeeee] rounded shadow-md z-10 relative"
+        className="h-48 w-full bg-[#eeeeee] ml-[-15px]  rounded shadow-md z-10 relative"
         style={{ backgroundColor: divColor }}
       >
         <button
@@ -50,7 +50,7 @@ export default function Faixa() {
 
       <div className="h-96 w-full z-10 px-4 py-2 relative">
         <h1 className="ml-[11em] mt-4 font-semibold text-xl text-[#000000]">Tiffany Bittencourt</h1>
-        <button onMouseLeave={() => setHovered(false)} onMouseEnter={() => setHovered(true)}
+        <button
           className="flex flex-row ml-[14em] mt-3 rounded-2xl gap-2 items-center justify-center h-auto p-2 border-[1px] border-[#007BC0] hover:bg-[#007BC0]">
           <CloudArrowUpIcon width={20} height={20} color={hovered ? "#ffffff" : "#007BC0"} />
           <h1 className="text-center text-sm font-medium text-[#007BC0] hover:text-white">Upload foto</h1>
