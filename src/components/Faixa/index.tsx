@@ -48,7 +48,7 @@ export default function Faixa() {
 
       <Avatar placeholder={"Nothing"} src="https://flowbite.com/application-ui/demo/images/users/roberta-casas.png" alt="Avatar" className="absolute border-2 border-white top-[6em] left-2 z-20 h-[12em] w-[12em]" onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
 
-      <div className="h-96 w-full z-10 px-4 py-2 relative">
+      <div className="h-full w-full z-10 px-4 py-2 relative">
         <h1 className="ml-[11em] mt-4 font-semibold text-xl text-[#000000]">Tiffany Bittencourt</h1>
         <button
           className="flex flex-row ml-[14em] mt-3 rounded-2xl gap-2 items-center justify-center h-auto p-2 border-[1px] border-[#007BC0] hover:bg-[#007BC0]">
