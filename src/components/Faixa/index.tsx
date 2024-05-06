@@ -12,6 +12,8 @@ export default function Faixa() {
   const [showColorPicker, setShowColorPicker] = useState<boolean>(false);
   const [divColor, setDivColor] = useState<string>(localStorage.getItem("divColor") || "#eeeeee");
   const blockPickerRef = useRef<HTMLDivElement>(null);
+  const [ShowDetail, setShowDetail] = useState(false)
+
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

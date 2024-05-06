@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from "react";
-import CalendarIcon from "./calendarIcon";
+// import CalendarIcon from "./calendarIcon";
+import Detail from "./Detail";
 
 interface RegisterProps {
     title: string;
@@ -9,7 +10,7 @@ interface RegisterProps {
 }
 
 const Register: React.FC<RegisterProps> = ({ title, date, description }) => {
-    const [showDetail, setShowDetail] = useState<boolean>(false);
+    const [ShowDetail, setShowDetail] = useState(false)
     const truncatedDescription: string = description.length > 104 ? description.substring(0, 104) + '...' : description;
 
     return (
@@ -20,7 +21,7 @@ const Register: React.FC<RegisterProps> = ({ title, date, description }) => {
                         <h1 className="font-bold text-xl">{title}</h1>
                     </div>
                     <div className="p-2 flex space-x-2 items-center">
-                        <CalendarIcon />
+                        {/* <CalendarIcon /> */}
                         <h2 className="text-lyricsDark text-sm">{date}</h2>
                     </div>
                     <div className="p-2 w-[14em] h-[6em]">
@@ -36,6 +37,9 @@ const Register: React.FC<RegisterProps> = ({ title, date, description }) => {
                 <div className="p-2 w-[8em] h-[30px] ml-[4em] ">
                     <button className="bg-palette-blue w-[8em] text-center h-[36px] text-white font-semibold rounded" onClick={() => setShowDetail(true)}>Ver mais</button>
                 </div>
+            </div>
+            <div>
+                <Detail isVisible={ShowDetail} onClose={() => setShowDetail(false)} />
             </div>
             
         </div>
