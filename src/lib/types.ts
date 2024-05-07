@@ -10,3 +10,11 @@ export const createTaskSchema = z.object({
 })
 
 export type TCreateTaskSchema = z.infer<typeof createTaskSchema>;
+
+export const createClassSchema = z.object({
+    turma_number: z.string(),
+    responsible: z.string().min(2),
+    shift: z.string()
+})
+
+export type TCreateClassSchema =  z.infer<typeof createClassSchema>;

@@ -11,7 +11,7 @@ function RoomCard() {
     const [fav, setFav] = useState(false);
 
     return (
-        <article className="select-none border-red-600 border-2">
+        <article className="select-none border-white border-2">
             <div className="before:content-['DS_10'] absolute ml-[4.3%] w-[55px] h-[55px] bg-palette-sea-green rounded-full z-10 mt-2.5 flex justify-center items-center text-light font-semibold shadow-lg shadow-[#6A6A6A]"></div>
             <div className="w-60 h-3/2 p-3 mb-7 bg-palette-card rounded-lg m-10 relative pt-5">
 
