@@ -1,12 +1,15 @@
 "use client";
 
 import ButtonIcon from "@/components/ButtonIcon";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Search from "@/components/Search";
 import { TiUserAddOutline } from "react-icons/ti";
 import { FiFilter } from "react-icons/fi";
 import Table from "@/components/Table";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
+import CreateUserForm from "@/components/Forms/createUserForm";
+import Modal from "@/components/Modal";
 
 const TABLE_ROWS = [
   {
@@ -52,6 +55,8 @@ const TABLE_ROWS = [
 ];
 
 export default function UsersPage() {
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   return (
     <>
       <Header title={"Users"} userImg={""} status={false} />
@@ -70,11 +75,14 @@ export default function UsersPage() {
             icon={<UserPlusIcon color="white" className="h-6 w-6" />}
             title={"Novo usuário"}
             colorHover={"hover:bg-palette-sea-greenDark"}
-            onClick={() => console.log("first")}
+            onClick={() => setShowModal(true)}
           />
         </div>
 
         <Table rows={TABLE_ROWS} />
+        <Modal isVisible={showModal} onClose={() => setShowModal(false)} title="Adicionar novo usuário" titleColor="text-palette-pink">
+          <CreateUserForm setShowModal={setShowModal} />
+        </Modal>
       </div>
     </>
   );

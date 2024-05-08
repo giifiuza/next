@@ -2,9 +2,10 @@ import { TCreateClassSchema } from "@/lib/types";
 import { FieldValues, useForm } from "react-hook-form";
 import { Bounce, toast } from "react-toastify";
 import { FaCheckCircle } from "react-icons/fa";
+import { Switch } from "@material-tailwind/react";
 
 
-export default function CreateClassForm({ setShowModal }: any) {
+export default function CreateUserForm({ setShowModal }: any) {
     const {
         register,
         handleSubmit,
@@ -13,7 +14,7 @@ export default function CreateClassForm({ setShowModal }: any) {
     } = useForm<TCreateClassSchema>();
 
     const onSubmit = async (data: FieldValues) => {
-        const response = await fetch('/api/classes', {
+        const response = await fetch('/api/users', {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -70,8 +71,8 @@ export default function CreateClassForm({ setShowModal }: any) {
     return (
         <form id="formClassCreate" onSubmit={handleSubmit(onSubmit)} className="p-8 py-4 flex flex-col justify-items-start ">
             <div>
-                <div className={`w-[35%] flex flex-col mb-4 lg:mb-2`}>
-                    <label className={`text-md font-semibold text-start`}>Digital Solutions</label>
+                <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
+                    <label className={`text-md font-semibold text-start`}>Nome</label>
                     <input  {...register("turma_number")} type={"text"} className={`rounded h-9 p-2 ${errors.turma_number?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
                     {errors.turma_number && (
                         <small className="text-red-500">{`${errors.turma_number.message}`}</small>)}
@@ -79,29 +80,51 @@ export default function CreateClassForm({ setShowModal }: any) {
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
-                <label className={`text-md font-semibold text-start`}>Padrinho ou Madrinha</label>
+                <label className={`text-md font-semibold text-start`}>Turma</label>
                 <input {...register("responsible")} className={` rounded h-9 p-2 ${errors.responsible?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
                 {errors.responsible && (
                     <small className="text-red-500">{`${errors.responsible.message}`}</small>
                 )}
             </div>
 
-            <div className={` flex flex-col mb-4`}>
-                <label className={`text-md font-semibold text-start`}>Período</label>
-                <select {...register("shift")} className={`${errors.shift?.message ? 'border border-red-500' : 'border border-palette-line'} bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}>
-                    <option defaultValue={true} value="Matutino">Manhã</option>
-                    <option value="Vespertino">Tarde</option>
-                </select>
-                {errors.shift && (
-                    <small className="text-red-500">{`${errors.shift.message}`}</small>
+            <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
+                <label className={`text-md font-semibold text-start`}>E-mail</label>
+                <input {...register("responsible")} className={` rounded h-9 p-2 ${errors.responsible?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
+                {errors.responsible && (
+                    <small className="text-red-500">{`${errors.responsible.message}`}</small>
                 )}
             </div>
 
+            <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
+                <label className={`text-md font-semibold text-start`}>Instrutor</label>
+                <Switch className="h-full w-full border-[1px] border-palette-line bg-white bg-none checked:bg-palette-pink rm-bg"
+                    containerProps={{
+                        className: "w-12 h-6 appearance-none",
+                    }}
+                    circleProps={{
+                        className: "bg-[#d9d9d9] before:hidden left-0.5 border-none",
+                    }} ripple={true} />
+            </div>
+
+            <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
+                <label className={`text-md font-semibold text-start`}>Administrador</label>
+
+                <Switch className="h-full w-full appearance-none border-[1px] border-palette-line bg-white checked:bg-palette-pink checked:border-none focus:border-none rm-bg"
+                    containerProps={{
+                        className: "w-12 h-6",
+                    }}
+                    circleProps={{
+                        className: "bg-[#d9d9d9] before:hidden left-0.5 border-none",
+                    }} ripple={true} />
+            </div>
+
+
+
             <div className="flex gap-8 mt-4 items-center">
-                <button type="submit" className="bg-palette-sea-green px-5 py-2 rounded text-white disabled:opacity-50">
+                <button type="submit" className="bg-palette-pink px-5 py-2 rounded text-white disabled:opacity-50">
                     {isSubmitting ? 'Carregando...' : 'Adicionar'}
                 </button>
-                <button onClick={() => { setShowModal(false); }} className="bg-[#F4F4F4] px-5 py-3 rounded text-palette-sea-green">
+                <button onClick={() => { setShowModal(false); }} className="bg-[#F4F4F4] px-5 py-3 rounded text-palette-pink">
                     Cancelar
                 </button>
             </div>

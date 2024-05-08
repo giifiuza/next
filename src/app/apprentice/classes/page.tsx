@@ -1,22 +1,33 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import SideBarClasses from "@/components/SideBarClasses";
-import Header from "@/components/Header";
-import ChooseClass from "@/../public/ChooseGroup.svg";
-import Image from "next/image";
+import Header from "@/components/Header"
+import RoomCard from "@/components/RoomCard"
+import New from "@/components/RoomCard/new"
+import { useState } from "react";
+import Modal from "@/components/Modal";
+import CreateClassForm from "@/components/Forms/createClassForm";
 
-export default function Classes() {
-  return (
-    <>
-      <SideBarClasses classCurrent="Digital Solutions 6" />
-      <section className="h-full pt-4 pl-60">
-        <Header title="DS6" />
-        <div className="flex flex-col justify-center items-center">
-          <Image alt="Image choose group" src={ChooseClass} className="h-auto w-[40%]" />
-          <h1 className="text-center text-palette-gray font-medium">Selecione uma equipe para obter mais informações</h1>
+export default function Rooms() {
+    const [showModal, setShowModal] = useState<boolean>(false);
+
+    return (
+        <div className="w-full h-full">
+            <Header title="Turmas" userImg="" status={false} />
+            <div className="w-[95%] h-full m-2">
+                <h1 className="text-sm text-gray-500">Favoritadas</h1>
+                <div className="w-full h-full">
+                    <RoomCard />
+                </div>
+                <hr className="border-gray-300 border-1" />
+                <h1 className="text-sm text-gray-500 m-2">Outras</h1>
+                <div className="flex">
+                    <New onClick={() => setShowModal(true)} />
+                    <RoomCard />
+                </div>
+            </div>
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)} title="Adicionar nova turma" titleColor="text-palette-sea-green">
+                <CreateClassForm setShowModal={setShowModal} />
+            </Modal>
         </div>
-      </section>
-    </>
-  );
+    )
 }
