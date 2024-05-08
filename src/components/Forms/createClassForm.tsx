@@ -27,6 +27,28 @@ export default function CreateClassForm({ setShowModal }: any) {
             return;
         }
 
+        if (responseData.errors) {
+            const errors = responseData.errors;
+            if (errors.turma_number) {
+                setError("turma_number", {
+                    type: "server",
+                    message: errors.turma_number,
+                });
+            } else if (errors.responsible) {
+                setError("responsible", {
+                    type: "server",
+                    message: errors.responsible
+                });
+            } else if (errors.shift) {
+                setError("shift", {
+                    type: "server",
+                    message: errors.shift
+                });
+            } else {
+                alert("Something went wrong!");
+            }
+        }
+
         if (responseData.success) {
             setShowModal(false);
             toast('Turma Registrada com sucesso!', {
