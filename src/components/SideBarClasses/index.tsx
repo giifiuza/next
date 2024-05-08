@@ -6,6 +6,8 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Modal from "../Modal";
+import CreateGroupForm from "../Forms/createGroupForm";
 
 interface ClassesProps {
   classCurrent: string;
@@ -13,6 +15,7 @@ interface ClassesProps {
 
 const SideBarClasses: React.FC<ClassesProps> = ({ classCurrent }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
@@ -73,10 +76,13 @@ const SideBarClasses: React.FC<ClassesProps> = ({ classCurrent }) => {
           </div>
         )}
       </div>
-      <div className="pb-5 flex flex-row">
+      <button className="pb-5 flex flex-row" onClick={() => setShowModal(true)}>
         <PlusIcon color={"#3E3E3E"} className="h-4 w-4 mr-3" />
         <h1 className="text-sm text-palette-font mb-[1px] font-medium">Nova equipe</h1>
-      </div>
+      </button>
+      <Modal isVisible={showModal} onClose={() => setShowModal(false)} title="Adicionar novo grupo" titleColor="text-palette-sea-green">
+          <CreateGroupForm setShowModal={setShowModal} />
+        </Modal>
     </nav>
   );
 };
