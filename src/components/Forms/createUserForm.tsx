@@ -51,26 +51,18 @@ export default function CreateUserForm({ setShowModal }: any) {
             <div>
                 <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                     <label className={`text-md font-semibold text-start`}>Nome</label>
-                    <input  {...register("turma_number")} type={"text"} className={`rounded h-9 p-2 ${errors.turma_number?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
-                    {errors.turma_number && (
-                        <small className="text-red-500">{`${errors.turma_number.message}`}</small>)}
-                </div>
+                    <input type={"text"} className={`rounded h-9 p-2 'border border-palette-line'}`} />
+                        </div>
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                 <label className={`text-md font-semibold text-start`}>Turma</label>
-                <input {...register("responsible")} className={` rounded h-9 p-2 ${errors.responsible?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
-                {errors.responsible && (
-                    <small className="text-red-500">{`${errors.responsible.message}`}</small>
-                )}
+                <input className={` rounded h-9 p-2 border border-palette-line`} />
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                 <label className={`text-md font-semibold text-start`}>E-mail</label>
-                <input {...register("responsible")} className={` rounded h-9 p-2 ${errors.responsible?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
-                {errors.responsible && (
-                    <small className="text-red-500">{`${errors.responsible.message}`}</small>
-                )}
+                <input className={`rounded h-9 p-2 'border border-palette-line`} />
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
