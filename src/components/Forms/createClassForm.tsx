@@ -72,7 +72,11 @@ export default function CreateClassForm({ setShowModal }: any) {
             <div>
                 <div className={`w-[35%] flex flex-col mb-4 lg:mb-2`}>
                     <label className={`text-md font-semibold text-start`}>Digital Solutions</label>
-                    <input  {...register("turma_number")} type={"text"} className={`rounded h-9 p-2 ${errors.turma_number?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
+                    <input onKeyDown={(e) => {
+                        if (!/^\d$/.test(e.key) && e.key !== "Backspace") {
+                            e.preventDefault();
+                        }
+                    }}   {...register("turma_number")} type={"text"} className={`rounded h-9 p-2 ${errors.turma_number?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
                     {errors.turma_number && (
                         <small className="text-red-500">{`${errors.turma_number.message}`}</small>)}
                 </div>
@@ -80,7 +84,11 @@ export default function CreateClassForm({ setShowModal }: any) {
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                 <label className={`text-md font-semibold text-start`}>Padrinho ou Madrinha</label>
-                <input {...register("responsible")} className={` rounded h-9 p-2 ${errors.responsible?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
+                <input onKeyDown={(e) => {
+                    if (!/^[a-zA-Z]*$/.test(e.key) && e.key !== "Backspace") {
+                        e.preventDefault();
+                    }
+                }} {...register("responsible")} type={"text"} className={` rounded h-9 p-2 ${errors.responsible?.message ? 'border border-red-500' : 'border border-palette-line'}`} />
                 {errors.responsible && (
                     <small className="text-red-500">{`${errors.responsible.message}`}</small>
                 )}

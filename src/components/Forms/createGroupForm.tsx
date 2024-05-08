@@ -1,9 +1,9 @@
-import { TCreateClassSchema } from "@/lib/types";
+import { TCreateGroupSchema } from "@/lib/types";
 import { FieldValues, useForm } from "react-hook-form";
 import { Bounce, toast } from "react-toastify";
 import { FaCheckCircle } from "react-icons/fa";
-import { PlusIcon } from "@heroicons/react/24/outline";
 import TagNames from "../TagNames";
+import { useState } from "react";
 
 
 export default function CreateGroupForm({ setShowModal }: any) {
@@ -12,11 +12,17 @@ export default function CreateGroupForm({ setShowModal }: any) {
         handleSubmit,
         formState: { errors, isSubmitting },
         setError,
-    } = useForm<TCreateClassSchema>();
+    } = useForm<TCreateGroupSchema>();
+
+    const [tags, setTags] = useState([""]);
+
+    const handleTagsChange = (newTags) => {
+        setTags(newTags);
+    };
 
 
     const onSubmit = async (data: FieldValues) => {
-        const response = await fetch('/api/users', {
+        const response = await fetch('/api/group', {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -30,9 +36,32 @@ export default function CreateGroupForm({ setShowModal }: any) {
             return;
         }
 
+        
+        if (responseData.errors) {
+            const errors = responseData.errors;
+            if (errors.focalpoint) {
+                setError("focalpoint", {
+                    type: "server",
+                    message: errors.focalpoint,
+                });
+            } else if (errors.area) {
+                setError("area", {
+                    type: "server",
+                    message: errors.area
+                });
+            // } else if (errors.apprentice) {
+            //     setError("apprentice", {
+            //         type: "server",
+            //         message: errors.apprentice
+            //     });
+            } else {
+                alert("Something went wrong!");
+            }
+        }
+
         if (responseData.success) {
             setShowModal(false);
-            toast('Grupo Registrado com sucesso!', {
+            toast('Equipe Registrado com sucesso!', {
                 type: "success",
                 position: "top-right",
                 autoClose: 5000,
@@ -53,27 +82,24 @@ export default function CreateGroupForm({ setShowModal }: any) {
             <div>
                 <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                     <label className={`text-md font-semibold text-start`}>Aprendiz</label>
-                    <TagNames value={""}/>
-                    {/* <input className={`rounded h-9 p-2 border-[1px] border-palette-line`} />
-                    <input className={`rounded h-9 p-2 border-[1px] border-palette-line mt-3`} /> */}
+                    <TagNames value={tags} onChange={handleTagsChange} />
                 </div>
-            </div>
-
-            <div className={`w-full flex mb-6 lg:mb-2`}>
-                <button className="flex flex-row gap-3 justify-center items-center">
-                    <PlusIcon color={"#3b3b3b"} className="h-4 w-4" />
-                    <h1 className="text-[#3b3b3b] text-sm">Novo integrante</h1>
-                </button>
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                 <label className={`text-md font-semibold text-start`}>Padrinho ou madrinha</label>
-                <input className={`rounded h-9 p-2 border border-palette-line`} />
+                <input {...register("focalpoint")} type={"text"} className={`${errors.focalpoint?.message ? 'border border-red-500' : 'border border-palette-line'} bg-gray-50 text-gray-900 text-sm rounded`}/>
+                {errors.focalpoint && (
+                    <small className="text-red-500">{`${errors.focalpoint.message}`}</small>
+                )}
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                 <label className={`text-md font-semibold text-start`}>Área de projetos</label>
-                <input className={`rounded h-9 p-2 border border-palette-line`} />
+                <input {...register("area")} type={"text"} className={`${errors.area?.message ? 'border border-red-500' : 'border border-palette-line'} bg-gray-50 text-gray-900 text-sm rounded`}/>
+                {errors.area && (
+                    <small className="text-red-500">{`${errors.area.message}`}</small>
+                )}
             </div>
             <div className="flex gap-8 mt-4 items-center">
                 <button type="submit" className="bg-palette-sea-green px-5 py-2 rounded text-white disabled:opacity-50">

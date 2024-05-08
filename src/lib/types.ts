@@ -12,9 +12,17 @@ export const createTaskSchema = z.object({
 export type TCreateTaskSchema = z.infer<typeof createTaskSchema>;
 
 export const createClassSchema = z.object({
-    turma_number: z.string().min(1, "Campo obrigatório"),
-    responsible: z.string().min(2, "Campo obrigatório"),
+    turma_number: z.string().min(1, "Campo digital solutions é obrigatório"),
+    responsible: z.string().min(2, "Campo padrinho/madrinha é obrigatório"),
     shift: z.enum(['Vespertino', 'Matutino'])
 })
 
 export type TCreateClassSchema =  z.infer<typeof createClassSchema>;
+
+export const createGroupSchema = z.object({
+    apprentice: z.string().min(1, "Campo aprendizes é obrigatório"),
+    focalpoint: z.string().min(2, "Campo padrinho/madrinha é obrigatório"),
+    area: z.string().min(2, "Campo área é obrigatório")
+})
+
+export type TCreateGroupSchema =  z.infer<typeof createGroupSchema>;
