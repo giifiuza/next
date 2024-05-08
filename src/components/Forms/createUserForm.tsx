@@ -30,7 +30,7 @@ export default function CreateUserForm({ setShowModal }: any) {
 
         if (responseData.success) {
             setShowModal(false);
-            toast('Turma Registrada com sucesso!', {
+            toast('Usuário Registrada com sucesso!', {
                 type: "success",
                 position: "top-right",
                 autoClose: 5000,
