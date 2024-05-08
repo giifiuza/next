@@ -47,7 +47,7 @@ export default function CreateUserForm({ setShowModal }: any) {
     }
 
     return (
-        <form id="formClassCreate" onSubmit={handleSubmit(onSubmit)} className="p-8 py-4 flex flex-col justify-items-start ">
+        <form id="formUserCreate" onSubmit={handleSubmit(onSubmit)} className="p-8 py-4 flex flex-col justify-items-start ">
             <div>
                 <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                     <label className={`text-md font-semibold text-start`}>Nome</label>
