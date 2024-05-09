@@ -61,9 +61,7 @@ const Diario = () => {
           <PaginationRegister />
         </div>
       </div>
-      <Modal isVisible={showModal} onClose={() => setShowModal(false)} title="Adicionar nova turma" titleColor="text-palette-sea-green">
-        <CreateClassForm  setShowModal={setShowModal}/>
-      </Modal>
+      
     </>
   );
 };

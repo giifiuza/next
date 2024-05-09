@@ -1,4 +1,4 @@
-import { TCreateClassSchema } from "@/lib/types";
+import { TCreateUserSchema } from "@/lib/types";
 import { FieldValues, useForm } from "react-hook-form";
 import { Bounce, toast } from "react-toastify";
 import { FaCheckCircle } from "react-icons/fa";
@@ -11,7 +11,7 @@ export default function CreateUserForm({ setShowModal }: any) {
         handleSubmit,
         formState: { errors, isSubmitting },
         setError,
-    } = useForm<TCreateClassSchema>();
+    } = useForm<TCreateUserSchema>();
 
     const onSubmit = async (data: FieldValues) => {
         const response = await fetch('/api/users', {
@@ -51,18 +51,18 @@ export default function CreateUserForm({ setShowModal }: any) {
             <div>
                 <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                     <label className={`text-md font-semibold text-start`}>Nome</label>
-                    <input type={"text"} className={`rounded h-9 p-2 'border border-palette-line'}`} />
-                        </div>
+                    <input type={"text"} className={`rounded h-9 p-2 border border-palette-line`} />
+                </div>
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                 <label className={`text-md font-semibold text-start`}>Turma</label>
-                <input className={` rounded h-9 p-2 border border-palette-line`} />
+                <input type={"text"} className={` rounded h-9 p-2 border border-palette-line`} />
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>
                 <label className={`text-md font-semibold text-start`}>E-mail</label>
-                <input className={`rounded h-9 p-2 'border border-palette-line`} />
+                <input type={"text"} className={`rounded h-9 p-2 border border-palette-line`} />
             </div>
 
             <div className={`w-full flex flex-col mb-4 lg:mb-2`}>

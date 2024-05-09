@@ -26,3 +26,13 @@ export const createGroupSchema = z.object({
 })
 
 export type TCreateGroupSchema =  z.infer<typeof createGroupSchema>;
+
+export const createUserSchema = z.object({
+    nome_aprendiz: z.string().min(1, "Campo nome é obrigatório"),
+    turma: z.string().min(2, "Campo turma é obrigatório"),
+    email: z.string().min(2),
+    instrutor: z.boolean(),
+    admin: z.boolean()
+})
+
+export type TCreateUserSchema=  z.infer<typeof createUserSchema>;

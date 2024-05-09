@@ -8,6 +8,7 @@ export default function TagNames({ value, onChange }) {
       <TagsInput
         value={value}
         onChange={onChange}
+        
       />
       <em className="text-xs text-slate-400	">Press enter para adicionar novo integrante</em>
     </div>

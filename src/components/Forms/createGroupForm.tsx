@@ -14,7 +14,7 @@ export default function CreateGroupForm({ setShowModal }: any) {
         setError,
     } = useForm<TCreateGroupSchema>();
 
-    const [tags, setTags] = useState([""]);
+    const [tags, setTags] = useState([]);
 
     const handleTagsChange = (newTags) => {
         setTags(newTags);
